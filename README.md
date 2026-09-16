@@ -33,7 +33,8 @@ The plan is to slowly build an actual small OS:
 * [x] build system
 * [x] kernel entry point
 * [x] basic printing
-* [ ] kernel initialization
+* [x] kernel initialization
+* [ ] kernel loop
 * [ ] memory management
 * [ ] heap allocator
 * [ ] interrupts & exceptions
