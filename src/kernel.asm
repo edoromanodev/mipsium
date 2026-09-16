@@ -4,9 +4,9 @@ boot_msg: .asciiz "Booting MIPSium...\n"
 
 .text
 
-.globl kernel_main
+.globl main
 
-kernel_main:
+main:
     # Print boot message
 
     la $a0, boot_msg    # load address of boot message into $a0
