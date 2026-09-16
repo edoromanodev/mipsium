@@ -1,17 +1,39 @@
-.data 
+.data
 
 boot_msg: .asciiz "Booting MIPSium...\n"
+init_msg: .asciiz "Initializing kernel...\n"
+ready_msg: .asciiz "Kernel initialized.\n"
+loop_msg: .asciiz "Entering kernel main loop...\n"
 
 .text
 
 .globl main
 
 main:
-    # Print boot message
+    # Boot message
+    la $a0, boot_msg
+    jal print_string
 
-    la $a0, boot_msg    # load address of boot message into $a0
-    jal print_string     # call print_string function
+    # Initialize kernel
+    jal kernel_init
 
-    li $v0, 10          # syscall for exit
-    syscall              # make the syscall
+
+    # Keep kernel running
+kernel_loop:
+    j kernel_loop
+
+
+
+
+kernel_init:
+    la $a0, init_msg
+    jal print_string
+
+    la $a0, ready_msg
+    jal print_string
+
+    # Return to main
+    jr $ra
+
+
 
